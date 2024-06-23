@@ -1,5 +1,13 @@
-# topological-sort
+# Algorithms
 
-python -m venv venv
+## Create venv, source it and add requirements
+```bash
+user@machine:~/code$ python -m venv venv
+user@machine:~/code$ source venv/bin/activate
+user@machine:~/code$ pip install -r requirements.txt
+```
 
-python main.py
+## Test
+```bash
+user@machine:~/code$ pytest
+```

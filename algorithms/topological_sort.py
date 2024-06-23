@@ -9,10 +9,14 @@ class Pipeline:
     def executor(self, params: dict = {}) -> None:
         print("Executing pipe: ", self.name)
 
-#
-# Dependecy resolver
-#
-def resolve_dependencies(pipelines: list[Pipeline]):
+
+def resolve_dependencies(pipelines: list[Pipeline]) -> list[Pipeline]:
+    """
+    Dependecy resolver
+
+    :param pipelines: :class:`list[User]`
+    """
+
     # Build a dictionary to store the indegree of each pipeline
     indegree = {pipeline: 0 for pipeline in pipelines}
     for pipeline in pipelines:
@@ -37,24 +41,3 @@ def resolve_dependencies(pipelines: list[Pipeline]):
         raise ValueError("Dependency graph contains a cycle")
 
     return resolved_order
-
-
-# TESTING
-# Example usage / Testing
-pipe01 = Pipeline("pipe01")
-pipe02 = Pipeline("pipe02")
-pipe03 = Pipeline("pipe03")
-pipe04 = Pipeline("pipe04")
-
-# Adding dependecies
-pipe03.dependencies.update([pipe01, pipe02])
-pipe04.dependencies.update([pipe02, pipe03])
-
-pipelines = [pipe01, pipe02, pipe03, pipe04]
-
-try:
-    resolved_pipelines = resolve_dependencies(pipelines)
-    for pipeline in resolved_pipelines:
-        pipeline.executor(params={})
-except ValueError as e:
-    print(e)

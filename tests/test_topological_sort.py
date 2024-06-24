@@ -1,6 +1,5 @@
-import pytest
-
 from algorithms.topological_sort import Pipeline, resolve_dependencies
+
 
 def test_topological_sort():
     pipe01 = Pipeline("pipe01")
@@ -14,4 +13,3 @@ def test_topological_sort():
     pipelines = [pipe01, pipe02, pipe03, pipe04]
 
     assert len(resolve_dependencies(pipelines=pipelines))
-
